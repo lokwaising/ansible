@@ -8,6 +8,7 @@
   - name: update repo cache (Ubuntu)
     tags: always
     apt:
+#Confirming cache is current to allow apts to run#
       update_cache: yes
     changed_when: false
     when: ansible_distribution == "Ubuntu"
@@ -16,9 +17,11 @@
 
   - name: install updates (CentOS)
     dnf:
-      update_only: yes
       update_cache: yes
+#Flagging any change reg - false#
+    changed_when: false
     when: ansible_distribution == "CentOS"
+
 
   - name: service start (CentOS)
     tags: apache,centos,httpd
@@ -27,6 +30,7 @@
       state: started
       enabled: yes
     when: ansible_distribution == "CentOS"
+
 
 
   - name: change e-mail address for admin (CentOS)
