@@ -1,11 +1,35 @@
   - name: install apache and php for Ubuntu
     tags: apache,apache2,ubuntu
-    apt:
+    package:
+#    apt:
       name:
-        - apache2
-        - libapache2-mod-php
+#        - apache2
+#        - libapache2-mod-php
+      - "{{ apache_package_name }}"
+      - "{{ php_package_name }}"
       state: latest
     when: ansible_distribution == "Ubuntu"
+
+  - name: start & enable apache service
+    tags: apache,httpd
+    service:
+#     name: apache2 
+      name: "{{ apache_service }}"
+      state: started
+      enabled: yes
+
+
+  - name: change e-mail address for admin (CentOS)
+    tags: apache,centos,httpd
+    lineinfile:
+      path: /etc/httpd/conf/httpd.conf
+      regexp: '^ServerAdmin'
+      line: ServerAdmin somebody@somewhere.net
+    when: ansible_distribution == "CentOS"
+#    register: remark
+    notify: restart_apache
+
+
 
 
   - name: copy default html file
