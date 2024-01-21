@@ -64,8 +64,9 @@
     tags: always
     authorized_key:
       user: simone 
-      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKEXSQDEnN7epVYpvsxk2AtyuRFg5JJSAifaZuviGRsR ansible"
-      
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIx3MI2Wwwf4rV49cSjXwGjYFEpdgTLOqkAdQdjsdUer ansible"
+
+#access without passwd
   - name: add sudo file for simone
     tags: always
     copy: 
