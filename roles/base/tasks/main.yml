@@ -1,22 +1,7 @@
-  - name: create simone user
-    tags: always
-    user:
-      name: simone
-      groups: root
-
 
   - name: add ssh key for simone
     tags: always
     authorized_key:
-      user: user
-      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE+L0IFFuXmfzGJvpIHO1SHTbr6H6BBCL9msVbDe7R94 ansible"
-
-  - name: add sudo file for simone
-    tags: always
-    copy:
-      src: sudoer_simone
-      dest: /etc/sudoers.d/simone
-      owner: root
-      group: root
-      mode: 0440
+      user: simone
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIx3MI2Wwwf4rV49cSjXwGjYFEpdgTLOqkAdQdjsdUer ansible"
 
